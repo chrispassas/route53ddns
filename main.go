@@ -19,7 +19,6 @@ var urls = []string{
 	"http://whatismyip.akamai.com/",
 	"http://checkip.amazonaws.com",
 	"https://checkip.amazonaws.com",
-	"https://diagnostic.opendns.com/myip",
 }
 
 type DDNSRecord struct {
