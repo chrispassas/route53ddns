@@ -58,7 +58,7 @@ func main() {
 	for x, url := range urls {
 		if currentIP, err = getCurrentIP(url); err != nil {
 			log.Printf("getCurrentIP() error:%v", err)
-			if x == len(url) {
+			if x == len(urls)-1 {
 				log.Fatalf("All IP check urls failed")
 			}
 		} else {
@@ -132,12 +132,12 @@ func getCurrentIP(url string) (ip string, err error) {
 		return ip,
 			err
 	}
+	defer resp.Body.Close()
 
 	if body, err = ioutil.ReadAll(resp.Body); err != nil {
 		err = fmt.Errorf("ioutil.ReadAll() resp.Body error:%v", err)
 		return ip, err
 	}
-	defer resp.Body.Close()
 
 	ip = strings.TrimSpace(string(body))
 
